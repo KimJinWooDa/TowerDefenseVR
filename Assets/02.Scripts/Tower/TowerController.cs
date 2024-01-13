@@ -50,6 +50,7 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Towers[(int)CurrentLevel].SetActive(true);
             OnUpdateCanvas?.Invoke(TowerStates[(int)CurrentLevel]);
         }
     }
@@ -58,20 +59,21 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (CurrentLevel == TowerLevel.Level0)
+            {
+                Towers[(int)CurrentLevel].SetActive(false);
+            }
+           
             OnPopOffCanvas?.Invoke();
         }
     }
     
-    public int buttonWidth = 100;
-    public int buttonHeight = 50;
-    public int margin = 10;
-
     void OnGUI()
     {
-        float xPosition = Screen.width - buttonWidth - margin;
-        float yPosition = margin;
+        float xPosition = Screen.width - 100 - 10;
+        float yPosition = 10;
 
-        Rect buttonRect = new Rect(xPosition, yPosition, buttonWidth, buttonHeight);
+        Rect buttonRect = new Rect(xPosition, yPosition, 100, 50);
 
         if (GUI.Button(buttonRect, "Upgrade"))
         {
