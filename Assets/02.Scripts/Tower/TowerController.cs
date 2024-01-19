@@ -21,8 +21,20 @@ public class TowerController : MonoBehaviour
 
     public ParticleSystem ParticleSystem;
 
+    
+    private const string PlayerTag = "Player";
+    
     private void Awake()
     {
+        Init();
+    }
+
+    private void Init()
+    {
+        for (int i = 0; i < Towers.Length; i++)
+        {
+            Towers[i].SetActive(false);
+        }
         CurrentLevel = TowerLevel.Level0;
         NextLevel = TowerLevel.Level1;
     }
@@ -48,7 +60,7 @@ public class TowerController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(PlayerTag))
         {
             Towers[(int)CurrentLevel].SetActive(true);
             OnUpdateCanvas?.Invoke(TowerStates[(int)CurrentLevel]);
@@ -57,7 +69,7 @@ public class TowerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(PlayerTag))
         {
             if (CurrentLevel == TowerLevel.Level0)
             {
@@ -68,6 +80,7 @@ public class TowerController : MonoBehaviour
         }
     }
     
+    #if UNITY_EDITOR
     void OnGUI()
     {
         float xPosition = Screen.width - 100 - 10;
@@ -80,4 +93,5 @@ public class TowerController : MonoBehaviour
             Upgrade();
         }
     }
+    #endif
 }
