@@ -20,7 +20,6 @@ public class TowerController : MonoBehaviour
     public TowerLevel NextLevel;
 
     public ParticleSystem ParticleSystem;
-
     
     private const string PlayerTag = "Player";
     
