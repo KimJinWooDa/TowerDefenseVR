@@ -61,7 +61,10 @@ public class TowerController : MonoBehaviour
     {
         if (other.CompareTag(PlayerTag))
         {
-            Towers[(int)CurrentLevel].SetActive(true);
+            if (CurrentLevel == TowerLevel.Level0)
+            {
+                Towers[(int)CurrentLevel].SetActive(true);
+            }
             OnUpdateCanvas?.Invoke(TowerStates[(int)CurrentLevel]);
         }
     }
