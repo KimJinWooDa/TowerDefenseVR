@@ -11,8 +11,8 @@ public enum TowerLevel
 
 public class TowerController : MonoBehaviour
 {
-    public static Action<TowerState> OnUpdateCanvas;
-    public static Action OnPopOffCanvas;
+    public event Action<TowerState> OnUpdateCanvas;
+    public event Action OnPopOffCanvas;
     
     public TowerState[] TowerStates;
     public GameObject[] Towers;

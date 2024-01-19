@@ -1,3 +1,5 @@
+using System;
+using AutoSet.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,15 +10,18 @@ public class TowerCanvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI towerLevel;
     [SerializeField] private TextMeshProUGUI damage;
     [SerializeField] private TextMeshProUGUI attackSpeed;
-    [SerializeField] private TextMeshProUGUI numberOfTargets;
     [SerializeField] private TextMeshProUGUI cost;
 
     [SerializeField] private Button upgradeButton;
-
-    private void Awake()
+    [SerializeField, AutoSetFromParent] private TowerController towerController;
+    
+    private void Start()
     {
-        TowerController.OnUpdateCanvas += ChangeCanvas;
-        TowerController.OnPopOffCanvas += PopOffCanvas;
+        if (towerController != null)
+        {
+            towerController.OnUpdateCanvas += ChangeCanvas;
+            towerController.OnPopOffCanvas += PopOffCanvas;
+        }
     }
 
     private void ChangeCanvas(TowerState tower)
@@ -26,7 +31,6 @@ public class TowerCanvas : MonoBehaviour
         towerLevel.text = $"현재 타워 레벨 : {tower.TowerLevel}";
         damage.text = $"공격력 : {tower.Damage}";
         attackSpeed.text = $"공격 속도 : {tower.AttackSpeed}";
-        numberOfTargets.text = $"타켓팅 수 : {tower.NumberOfTargets}";
         
         cost.text = $"업그레이드 비용 : {tower.NextUpgradeCost}$";
     }
@@ -38,7 +42,10 @@ public class TowerCanvas : MonoBehaviour
 
     private void OnDestroy()
     {
-        TowerController.OnUpdateCanvas -= ChangeCanvas;
-        TowerController.OnPopOffCanvas -= PopOffCanvas;
+        if (towerController != null)
+        {
+            towerController.OnUpdateCanvas -= ChangeCanvas;
+            towerController.OnPopOffCanvas -= PopOffCanvas;
+        }
     }
 }
