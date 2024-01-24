@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a18dca010714e48966470d0ba0ab0b, type: 3}
-  m_Name: Junior
+  m_Name: 02.Sophomore
   m_EditorClassIdentifier: 
-  Damage: 30
-  Hp: 50
-  Speed: 1.5
-  Gold: 3
+  Damage: 15
+  Hp: 100
+  Speed: 0.5
+  Gold: 2

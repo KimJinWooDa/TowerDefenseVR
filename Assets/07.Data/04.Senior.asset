@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a18dca010714e48966470d0ba0ab0b, type: 3}
-  m_Name: Senior
+  m_Name: 04.Senior
   m_EditorClassIdentifier: 
   Damage: 45
   Hp: 250
