@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -11,18 +12,22 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    [Header("[State]")]
     public static GameManager Instance;
     public GameState State;
+    public string CurrentScene;
     
-    public int Gold { get; private set; }
+    public int CurrentGold { get; private set; }
     public float CurrentTime  { get; private set; }
     public float[] TimeUntilNextLevel = {60,120,180,240,480};
-    
-    public GameObject GameOverCanvas;
-    public GameObject GameClearCanvas;
-
     public float RequiredDurationToWin = 600f;
 
+    [Space(10)]
+    [Header("[UI]")]
+    public GameObject GameOverCanvas;
+    public GameObject GameClearCanvas;
+    
+    
     private int currentStage;
     
     private void Awake()
@@ -33,18 +38,18 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         currentStage = 0;
-        Gold = 10;
+        CurrentGold = 10;
         State = GameState.Stage1;
     }
 
     public void GetGold(int gold)
     {
-        Gold += gold;
+        CurrentGold += gold;
     }
 
     public void ConsumeGold(int gold)
     {
-        Gold -= gold;
+        CurrentGold -= gold;
     }
 
     public void GameOver()
@@ -57,6 +62,16 @@ public class GameManager : MonoBehaviour
         GameClearCanvas.SetActive(true);
     }
 
+    public void GoLobby()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
+    public void ReStart()
+    {
+        SceneManager.LoadScene(CurrentScene);
+    }
+    
     private void Update()
     {
         CurrentTime += Time.deltaTime;

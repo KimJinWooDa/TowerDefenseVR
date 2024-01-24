@@ -1,6 +1,4 @@
-using System;
 using AutoSet.Utils;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,14 +16,20 @@ public class Monster : MonoBehaviour
     [Space(10)]
     [Header("[Value]")]
     public MonsterInfo MonsterInfo;
-    public float AnimationDelay = 1f;
     public float AttackTime = 2f;
     private float attackTimer = 0f;
+    
+    [Space(10)]
+    [Header("[FX]")]
+    [SerializeField, AutoSet] private AudioSource audioSource;
+    public AudioClip SpawnAudio;
+    public AudioClip DeathSound;
     
     protected float damage;
     protected float hp;
     protected float speed;
     protected int gold;
+    private bool isDead = false;
     
     private readonly int Attack1 = Animator.StringToHash("Attack");
     private readonly int Die1 = Animator.StringToHash("Die");
@@ -44,6 +48,9 @@ public class Monster : MonoBehaviour
         
         professor = null;
         professorTransform = GameObject.FindGameObjectWithTag(Professor).transform;
+
+        audioSource.clip = SpawnAudio;
+        audioSource.Play();
         
         agent.speed = speed;
         agent.SetDestination(professorTransform.position);
@@ -51,6 +58,8 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
+        
         attackTimer += Time.deltaTime;
         
         if (professor == null)
@@ -67,51 +76,54 @@ public class Monster : MonoBehaviour
 
     protected virtual void Attack()
     {
+        if(isDead) return;
+        
         agent.isStopped = true;
         animator.SetTrigger(Attack1);
         professor.GetHit(damage);
     }
 
-    private async void Die()
+    private void Die()
     {
+        isDead = true;
+        
+        audioSource.clip = DeathSound;
+        audioSource.Play();
         agent.isStopped = true;
         animator.SetTrigger(Die1);
         GameManager.Instance.GetGold(gold);
-        await WaitOneSecondAsync();
-        if (gameObject != null)
-        {
-            Destroy(gameObject);
-        }
     }
 
-    public async void GetHit(float damage)
+    public void GetHit(float damage)
     {
+        if(isDead) return;
+     
         agent.isStopped = true;
-        await WaitOneSecondAsync();
-        Recover();
-        
-        animator.SetTrigger(Hit);
         hp -= damage;
 
         if (hp <= 0)
         {
             Die();
         }
+        else
+        {
+            animator.SetTrigger(Hit);
+        }
+    }
+
+    public void OnDestroy()
+    {
+        Destroy(gameObject);
     }
 
     private void Recover()
     {
-        if (gameObject != null)
-        {
-            agent.isStopped = false;
-            agent.SetDestination(professorTransform.position);
-        }
+        if(isDead) return;
+        
+        agent.isStopped = false;
+        agent.SetDestination(professorTransform.position);
     }
-    
-    private async UniTask WaitOneSecondAsync()
-    {
-        await UniTask.Delay(TimeSpan.FromSeconds(AnimationDelay), cancellationToken: destroyCancellationToken);
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {

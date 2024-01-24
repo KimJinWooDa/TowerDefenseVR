@@ -12,20 +12,23 @@ public enum TowerLevel
 public class TowerController : MonoBehaviour
 {
     public event Action<TowerState> OnUpdateCanvas;
-    public event Action OnPopOffCanvas;
+    public event Action OnHideCanvas;
     
     [Header("[Tower State]")]
     public TowerState[] TowerStates;
+    public TowerState CurrentTowerState => TowerStates[(int)CurrentLevel];
     public GameObject[] Towers;
     
     [Space(10)]
     [Header("[Tower]")]
     public TowerLevel CurrentLevel;
     public TowerLevel NextLevel;
-
+    public TowerLevel MaxTowerLevel = TowerLevel.Level3;
+    
     [Space(10)]
-    [Header("[Particle System]")]
+    [Header("[FX]")]
     public ParticleSystem ParticleSystem;
+    public AudioSource UpgradeSound;
     
     private const string PlayerTag = "Player";
     
@@ -46,12 +49,18 @@ public class TowerController : MonoBehaviour
 
     public void Upgrade()
     {
-        if((int)CurrentLevel >= Towers.Length - 1 || GameManager.Instance.Gold < TowerStates[(int)CurrentLevel].NextUpgradeCost)
+        if(CurrentLevel >= MaxTowerLevel)
+        {
+            return;
+        }
+
+        if (GameManager.Instance.CurrentGold < TowerStates[(int)CurrentLevel].NextUpgradeCost)
         {
             return;
         }
         
         GameManager.Instance.ConsumeGold(TowerStates[(int)CurrentLevel].NextUpgradeCost);
+        UpgradeSound.Play();
         ParticleSystem.Play();
         
         Towers[(int)CurrentLevel].SetActive(false);
@@ -85,22 +94,7 @@ public class TowerController : MonoBehaviour
                 Towers[(int)CurrentLevel].SetActive(false);
             }
            
-            OnPopOffCanvas?.Invoke();
+            OnHideCanvas?.Invoke();
         }
     }
-    
-    #if UNITY_EDITOR
-    void OnGUI()
-    {
-        float xPosition = Screen.width - 100 - 10;
-        float yPosition = 10;
-
-        Rect buttonRect = new Rect(xPosition, yPosition, 100, 50);
-
-        if (GUI.Button(buttonRect, "Upgrade"))
-        {
-            Upgrade();
-        }
-    }
-    #endif
 }

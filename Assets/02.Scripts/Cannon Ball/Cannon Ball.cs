@@ -3,7 +3,11 @@ using UnityEngine;
 public class CannonBall : MonoBehaviour
 {
     public LayerMask MonsterLayer;
+   
+    [Space(10)]
+    [Header("[FX]")]
     public GameObject BombVfx;
+    public AudioClip BombClip;
 
     private float damage;
 
@@ -23,6 +27,7 @@ public class CannonBall : MonoBehaviour
             
         }
 
+        AudioSource.PlayClipAtPoint(BombClip, transform.position);
         Instantiate(BombVfx, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -67,7 +67,7 @@ public class TowerAttack : MonoBehaviour
     private async UniTask AttackMonster()
     {
         Transform projectile = Instantiate(ProjectilePrefab, TurretMuzzle.position, Quaternion.identity);
-        projectile.gameObject.GetComponent<CannonBall>().Init(towerController.TowerStates[(int)towerController.CurrentLevel].Damage);
+        projectile.gameObject.GetComponent<CannonBall>().Init(towerController.CurrentTowerState.Damage);
         projectile.forward = Turret.forward;
         
         #region ParabolicFormula

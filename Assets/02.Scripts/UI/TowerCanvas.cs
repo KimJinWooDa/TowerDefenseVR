@@ -19,7 +19,7 @@ public class TowerCanvas : MonoBehaviour
         if (towerController != null)
         {
             towerController.OnUpdateCanvas += ChangeCanvas;
-            towerController.OnPopOffCanvas += PopOffCanvas;
+            towerController.OnHideCanvas += HideCanvas;
         }
     }
 
@@ -34,7 +34,7 @@ public class TowerCanvas : MonoBehaviour
         cost.text = $"업그레이드 비용 : {tower.NextUpgradeCost}$";
     }
 
-    private void PopOffCanvas()
+    private void HideCanvas()
     {
         canvasGroup.alpha = 0f;
     }
@@ -44,7 +44,7 @@ public class TowerCanvas : MonoBehaviour
         if (towerController != null)
         {
             towerController.OnUpdateCanvas -= ChangeCanvas;
-            towerController.OnPopOffCanvas -= PopOffCanvas;
+            towerController.OnHideCanvas -= HideCanvas;
         }
     }
 }

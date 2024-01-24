@@ -10,9 +10,8 @@ public class MonsterSpanwer : MonoBehaviour
     private float spawnTimer = 0f;
     public float SpawnTime = 2f;
     public float SpawnDelay = 1f;
-
-
-    private async void Update()
+    
+    private void Update()
     {
         spawnTimer += Time.deltaTime;
         
@@ -21,32 +20,34 @@ public class MonsterSpanwer : MonoBehaviour
             spawnTimer = 0f;
             if (GameManager.Instance.State == GameState.Stage1)
             {
-                Instantiate(Monsters[0], MonsterSpawnPosition.position, Quaternion.identity);
+                Spawn(0, false);
             }
             else if (GameManager.Instance.State == GameState.Stage2)
             {
-                Instantiate(Monsters[0], MonsterSpawnPosition.position, Quaternion.identity);
-                await WaitOneSecondAsync();
-                Instantiate(Monsters[1], MonsterSpawnPosition.position, Quaternion.identity);
+                Spawn(0);
             }
             else if (GameManager.Instance.State == GameState.Stage3)
             {
-                Instantiate(Monsters[1], MonsterSpawnPosition.position, Quaternion.identity);
-                await WaitOneSecondAsync();
-                Instantiate(Monsters[2], MonsterSpawnPosition.position, Quaternion.identity);
+                Spawn(1);
             }
             else if (GameManager.Instance.State == GameState.Stage4)
             {
-                Instantiate(Monsters[2], MonsterSpawnPosition.position, Quaternion.identity);
-                await WaitOneSecondAsync();
-                Instantiate(Monsters[3], MonsterSpawnPosition.position, Quaternion.identity);
+                Spawn(2);
             }
             else if (GameManager.Instance.State == GameState.Stage5)
             {
-                Instantiate(Monsters[3], MonsterSpawnPosition.position, Quaternion.identity);
-                await WaitOneSecondAsync();
-                Instantiate(Monsters[4], MonsterSpawnPosition.position, Quaternion.identity);
+                Spawn(3);
             }
+        }
+    }
+
+    private async void Spawn(int index, bool spawnMultipleTypes = true)
+    {
+        Instantiate(Monsters[index], MonsterSpawnPosition.position, Quaternion.identity);
+        if (spawnMultipleTypes)
+        {
+            await WaitOneSecondAsync();
+            Instantiate(Monsters[index+1], MonsterSpawnPosition.position, Quaternion.identity);
         }
     }
     
