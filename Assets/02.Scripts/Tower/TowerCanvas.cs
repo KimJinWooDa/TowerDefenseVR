@@ -1,4 +1,3 @@
-using System;
 using AutoSet.Utils;
 using TMPro;
 using UnityEngine;

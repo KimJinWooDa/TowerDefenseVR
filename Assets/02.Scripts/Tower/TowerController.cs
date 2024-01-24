@@ -14,11 +14,17 @@ public class TowerController : MonoBehaviour
     public event Action<TowerState> OnUpdateCanvas;
     public event Action OnPopOffCanvas;
     
+    [Header("[Tower State]")]
     public TowerState[] TowerStates;
     public GameObject[] Towers;
+    
+    [Space(10)]
+    [Header("[Tower ]")]
     public TowerLevel CurrentLevel;
     public TowerLevel NextLevel;
 
+    [Space(10)]
+    [Header("[Particle System]")]
     public ParticleSystem ParticleSystem;
     
     private const string PlayerTag = "Player";
@@ -40,11 +46,12 @@ public class TowerController : MonoBehaviour
 
     public void Upgrade()
     {
-        if((int)CurrentLevel >= Towers.Length - 1)
+        if((int)CurrentLevel >= Towers.Length - 1 || GameManager.Instance.Gold < TowerStates[(int)CurrentLevel].NextUpgradeCost)
         {
             return;
         }
         
+        GameManager.Instance.ConsumeGold(TowerStates[(int)CurrentLevel].NextUpgradeCost);
         ParticleSystem.Play();
         
         Towers[(int)CurrentLevel].SetActive(false);
