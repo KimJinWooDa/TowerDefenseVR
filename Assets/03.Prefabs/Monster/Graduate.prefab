@@ -99,7 +99,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100070, guid: 3353e4f866c39d043a315b41717c9bb7,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6816213356333910536}
+      addedObject: {fileID: 1607689873979648583}
   m_SourcePrefab: {fileID: 100100000, guid: 3353e4f866c39d043a315b41717c9bb7, type: 3}
 --- !u!95 &8749034898310511877 stripped
 Animator:
@@ -183,7 +183,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &6816213356333910536
+--- !u!114 &1607689873979648583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8749034898319888003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ab3ead32444184aad175336dbec6a2, type: 3}
+  m_Script: {fileID: 11500000, guid: baea650e6be7a50468e943a1a17c89e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2127208489209888221}
@@ -203,3 +203,5 @@ MonoBehaviour:
   MonsterInfo: {fileID: 11400000, guid: 1699e654a024a3e4db5dbd7d421a78ea, type: 2}
   AnimationDelay: 1
   AttackTime: 2
+  explosionEffect: {fileID: 7226888052703040407, guid: 7ec363c8df426644ea85f8d6d570561c,
+    type: 3}

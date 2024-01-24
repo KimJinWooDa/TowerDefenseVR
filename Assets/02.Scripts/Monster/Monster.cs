@@ -7,8 +7,9 @@ using UnityEngine.AI;
 public class Monster : MonoBehaviour
 {
     [Header("[Core]")]
-    [SerializeField, AutoSet] private NavMeshAgent agent; 
+    [SerializeField, AutoSet] protected NavMeshAgent agent; 
     [SerializeField, AutoSet] private Animator animator;
+    protected Professor professor;
     
     [Space(10)]
     [Header("[Layer]")]
@@ -21,10 +22,10 @@ public class Monster : MonoBehaviour
     public float AttackTime = 2f;
     private float attackTimer = 0f;
     
-    private float damage;
-    private float hp;
-    private float speed;
-    private int gold;
+    protected float damage;
+    protected float hp;
+    protected float speed;
+    protected int gold;
     
     private readonly int Attack1 = Animator.StringToHash("Attack");
     private readonly int Die1 = Animator.StringToHash("Die");
@@ -32,7 +33,7 @@ public class Monster : MonoBehaviour
     private const string Professor = "Professor";
 
     private Transform professorTransform;
-    private Professor professor;
+   
     
     private void Start()
     {
@@ -64,12 +65,11 @@ public class Monster : MonoBehaviour
         }
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         agent.isStopped = true;
         animator.SetTrigger(Attack1);
         professor.GetHit(damage);
-        //Todo : Professor <- Attack
     }
 
     private async void Die()
@@ -82,7 +82,6 @@ public class Monster : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //Todo : Player <- gold
     }
 
     public async void GetHit(float damage)
@@ -111,7 +110,7 @@ public class Monster : MonoBehaviour
     
     private async UniTask WaitOneSecondAsync()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(AnimationDelay));
+        await UniTask.Delay(TimeSpan.FromSeconds(AnimationDelay), cancellationToken: destroyCancellationToken);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -126,7 +125,10 @@ public class Monster : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & ProfessorLayer) != 0)
         {
-            professor = null;
+            if (professor)
+            {
+                professor = null;
+            }
         }
     }
 }

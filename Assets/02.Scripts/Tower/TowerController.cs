@@ -19,7 +19,7 @@ public class TowerController : MonoBehaviour
     public GameObject[] Towers;
     
     [Space(10)]
-    [Header("[Tower ]")]
+    [Header("[Tower]")]
     public TowerLevel CurrentLevel;
     public TowerLevel NextLevel;
 

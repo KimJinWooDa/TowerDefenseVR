@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a18dca010714e48966470d0ba0ab0b, type: 3}
   m_Name: 02.Sophomore
   m_EditorClassIdentifier: 
-  Damage: 15
-  Hp: 100
-  Speed: 0.5
+  Damage: 10
+  Hp: 80
+  Speed: 0.6
   Gold: 2

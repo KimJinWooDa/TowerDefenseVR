@@ -19,7 +19,6 @@ public class CannonBall : MonoBehaviour
             if(other.gameObject.TryGetComponent(out Monster monster))
             {
                 monster.GetHit(damage);
-                Debug.Log("Attack" + damage);
             }
             
         }

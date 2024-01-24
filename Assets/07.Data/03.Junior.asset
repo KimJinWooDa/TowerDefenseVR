@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a18dca010714e48966470d0ba0ab0b, type: 3}
   m_Name: 03.Junior
   m_EditorClassIdentifier: 
-  Damage: 30
-  Hp: 50
-  Speed: 1
+  Damage: 20
+  Hp: 150
+  Speed: 0.9
   Gold: 3
