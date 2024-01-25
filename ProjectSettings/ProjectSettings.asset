@@ -76,6 +76,7 @@ PlayerSettings:
   androidMinimumWindowWidth: 400
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
+  androidAutoRotationBehavior: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 0
@@ -136,10 +137,10 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
+  visionOSBundleVersion: 1.0
+  tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
   preloadedAssets:
-  - {fileID: -307455957576952336, guid: 597033594cb8cbc4bb14357381a4d7a4, type: 2}
-  - {fileID: 11400000, guid: a27fb290651317246a822055029ce143, type: 2}
   - {fileID: 11400000, guid: 16f027f2c00e7a14fa75fdaabf3d1229, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -572,7 +573,6 @@ PlayerSettings:
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchEnableFileSystemTrace: 0
-  switchUseGOLDLinker: 0
   switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
@@ -811,7 +811,8 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Standalone: 
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

@@ -345,7 +345,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -519,7 +519,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -7588155868070637639, guid: a736566565a0467eb2ba23a7007ba560, type: 3}
+  m_Mesh: {fileID: -7588155868070637639, guid: 1bb511c8a05be7d4aab86bc7439e73f3, type: 3}
   m_Bones:
   - {fileID: 3481169405455556849}
   - {fileID: 1168154436398436826}

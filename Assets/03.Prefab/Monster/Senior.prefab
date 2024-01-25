@@ -77,7 +77,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 6520c6d7889f4c72b416f07f34edd515, type: 3}
+  m_Mesh: {fileID: 7113620311128232067, guid: 56fc0b4f7d154039a7099564596a545b, type: 3}
   m_Bones:
   - {fileID: 7747378631344823400}
   - {fileID: 7821883584857508232}
@@ -243,7 +243,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   MonsterInfo: {fileID: 11400000, guid: 832bad2fd67d5414397b0a370f89456c, type: 2}
-  AnimationDelay: 1
   AttackTime: 2
   audioSource: {fileID: 8450521845795901057}
   SpawnAudio: {fileID: 8300000, guid: c8296feadb5805346af145281f540fec, type: 3}
@@ -269,7 +268,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

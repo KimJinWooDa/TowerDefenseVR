@@ -208,7 +208,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -301,7 +301,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   MonsterInfo: {fileID: 11400000, guid: 1699e654a024a3e4db5dbd7d421a78ea, type: 2}
-  AnimationDelay: 1
   AttackTime: 2
   audioSource: {fileID: 8865193832540284842}
   SpawnAudio: {fileID: 8300000, guid: 60976c4bdf37d104c9b4fe16b65a4409, type: 3}
