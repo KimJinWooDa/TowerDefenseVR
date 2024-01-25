@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 04.Senior
   m_EditorClassIdentifier: 
   Damage: 30
-  Hp: 250
+  Hp: 200
   Speed: 0.7
   Gold: 5
