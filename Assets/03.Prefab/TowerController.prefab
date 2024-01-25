@@ -1457,6 +1457,11 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 67.59
       objectReference: {fileID: 0}
+    - target: {fileID: 5131428659411401261, guid: 29cddfdcf7c80e54393848c4d6e6fcbb,
+        type: 3}
+      propertyPath: _position.z
+      value: -1.19
+      objectReference: {fileID: 0}
     - target: {fileID: 5199161310788308991, guid: 29cddfdcf7c80e54393848c4d6e6fcbb,
         type: 3}
       propertyPath: towerController
